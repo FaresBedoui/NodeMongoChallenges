@@ -1,0 +1,27 @@
+"C:\Program Files\MongoDB\Server\6.0\bin\mongod.exe" --dbpath="c:\data\db"
+
+Create a folder for the project and then inside:
+npm init -y
+npm install express --save
+create index.js
+npm install body-parser --save
+npm install mongoose --save
+
+
+{
+    "firstName" : " Fares",
+    "lastName" : "Bedoui",
+    "email" : "Faresmig29@gmail.com",
+    "password" : "292929",
+    "age": "35",
+    "todos": ["sport","regime"] 
+  }
+
+{
+    "firstName" : " Emna",
+    "lastName" : "Bouthour",
+    "email" : "EmnaB@gmail.com",
+    "password" : "313131",
+    "age": "29",
+    "todos": ["sport","Grossesse"] 
+  }
