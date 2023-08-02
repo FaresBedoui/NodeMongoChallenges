@@ -12,7 +12,7 @@ router.post('/users', (req, res) => {
     email,
     password,
     age,
-    todos: [] // Initialisez le tableau des tâches à vide pour un nouvel utilisateur
+    todos: [] // Initialiser le tableau des tâches à vide pour un nouvel utilisateur
   });
 
   newUser.save()
