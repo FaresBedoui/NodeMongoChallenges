@@ -195,5 +195,40 @@ app.delete('/missions/:id', async (req, res) => {
   }
 });
 
+
+// Ajouter un employé à une équipe
+const MAX_EMPLOYEES_PER_TEAM = 6;
+
+app.post('/equipes/:id_équipe/ajouter_employe/:id_employe', async (req, res) => {
+  try {
+    const equipe = await Equipe.findById(req.params.id_équipe);
+    const employe = await Employe.findById(req.params.id_employe);
+    
+    if (!equipe || !employe) {
+      return res.status(404).json({ message: 'Équipe ou employé non trouvé' });
+    }
+
+    if (equipe.employes.length >= MAX_EMPLOYEES_PER_TEAM) {
+      return res.status(400).json({ message: 'L\'équipe a déjà atteint son nombre maximal d\'employés' });
+    }
+
+    if (!employe.disponibilite) {
+      return res.status(400).json({ message: 'L\'employé n\'est pas disponible' });
+    }
+
+    equipe.employes.push(employe);
+    await equipe.save();
+
+    employe.disponibilite = false; // Mettre l'employé en non disponible
+    await employe.save();
+
+    res.json({ message: 'Employé ajouté à l\'équipe avec succès' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+
+
 module.exports = app;
 
